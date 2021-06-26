@@ -22,16 +22,16 @@ function CabecalhoTabela() {
 const CorpoTabela = (props) => {
     // esta função 'interna' irá ler e processar todos
     // os objetos definidos dentro do array 'dadosDosJogos'
-    const rows = props.dadosDosJogos.map((row) => {
+    const rows = props.dadosDosJogos.map((row, idJogo) => {
         return (
-            <tr key={row.idJogo}>
+            <tr key={idJogo}>
                 <td>{row.nomeJogo}</td>
                 <td><img src={'fotosjogos/' + row.imagemFoto}
                     alt={'foto do ' + row.nomeJogo}
                     height="150" />
                 </td>
                 <td>{row.idJogo}</td>
-                <td><button className="btn btn-outline-danger" onClick={()=>props.jogoaRemover(row.idJogo)}>Apagar Jogo</button></td>
+                <td><button className="btn btn-outline-danger" onClick={()=>props.jogoaRemover(idJogo)}>Apagar Jogo</button></td>
             </tr>
         )
     })

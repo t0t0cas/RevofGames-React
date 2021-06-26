@@ -91,12 +91,12 @@ class App extends React.Component {
 
   /**
    * método que sabe identificar o 'jogo' que deverá ser retirado da tabela
-   * @param {*} idJogo - dados do aluno a remover
+   * @param {*} idJogo - dados do jogo a remover
    */
    removeJogo=(idJogo)=>{
-    //recuperar os alunos que estão representados na tabela 
+    //recuperar os jogos que estão representados na tabela 
     const {jogos} = this.state
-    //alterar essa lista, retirando dela o aluno identificado pelo 'index'
+    //alterar essa lista, retirando dela o jogo identificado pelo 'index'
     this.setState({
       //filter é um método do 'state' que permite aplicar um filtro sobre os
       //dados do state 
@@ -121,11 +121,11 @@ class App extends React.Component {
       case "sucesso":
         return (
           <div className="container">
-            {/* adição do Formulário que há-de recolher os dados da nova fotografia */}
+            {/* adição do Formulário que há-de recolher os dados do novo jogo */}
             <Formulario dadosJogos={jogos}/>
 
-            {/* este componente - Tabela - irá apresentar os dados das 'fotos' no ecrã
-                as 'fotos' devem ser lidas na API */}
+            {/* este componente - Tabela - irá apresentar os dados dos jogos no ecrã
+               os jogos devem ser lidas na API */}
             <Tabela dadosJogos={jogos} jogo={this.removeJogo} />
           </div>
         )
