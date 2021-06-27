@@ -4,24 +4,10 @@
 
 import React from 'react'
 
-/**
- * mostrar os dados dos cães
- * e escolher um deles 
- */
-const EscolheJogo=(props)=>{
-    //itera todos os cães, da lista de cães, e produz as 'options' necessárias à <select></select>
-    const opcoes = props.listaJogos.map((opcao) => {
-        return (
-            <option key={opcao.idJogo} 
-                    value={opcao.idJogo}>{opcao.idJogo}</option>
-        )
-    })
-    // valor devolvido pela função 'CorpoTabela'
-    return (<select>{opcoes}</select>)
-}
+
 
 /**
- * Formulário para adicionar (fazer upload) de uma Fotografia
+ * Formulário para adicionar (fazer upload) de um jogo
  */
 class Formulario extends React.Component{
 
@@ -31,59 +17,72 @@ class Formulario extends React.Component{
         //variáveis para guardar os dados introduzidos pelo utilizador, no formulário
         this.state = {
             nomeDoJogo:"",
-            FotodoJogo:"",
-            idDoJogo:""
+            FotodoJogo:null
         } 
     }
 
-
     /**
-     * handler para manipular os dados escritos
-     * pelo utilizador nas textboxs do formulário
-     * @param {*} evento - contém os dados escritos pelo utilizador
+     * processar os dados fornecidos pelo utilizador sobre o nome do Jogo
+     * @param {*} evento - dados adicionados pelo utilizador 
+     * 
      */
-    handlerAdicao =(evento)=>{
-        //ler os dados contidos no 'evento'
-        //e atribuí-los às variáveis name e value
-        //name - Nome do objeto que foi manipulado
-        //value - o conteúdo da textbox 
-        const{name, value}=evento.target;
+    handlerJogoChange = (evento) =>{
+        //validar os valores introduzidos na TextBox (Impede que o utilizador insira números)
+        if(/\d/.test(evento.target.value)){
+            evento.target.setCustomValidity("Nome do Jogo Inválido");
+            return;
+        }else {
+            evento.target.setCustomValidity("");
+        }
 
-        //atribuir os dados lidos à 'state'
+        //guardar os dados recolhidos
         this.setState({
-            [name]: value
-        })
+            nomeDoJogo: evento.target.value
+        });
     }
 
-
+    /**
+     * processar os dados fornecidos pelo utilizador no upload da foto do jogo
+     * @param {} evento - dados adicionados pelo utilizador
+     */
+    handlerFotoChange = (evento) => {
+        //guardar os dados recolhidos 
+        this.setState({
+            FotodoJogo: evento.target.files[0]
+        });
+    }
 
     /**
-     * Função que irá exportar os dados para fora do Formulário
+     * handler para processar os dados fornecidos pelo Formulário
+     * @param {*} evento 
      */
-    submitForm = () =>{
-        //atriuir ao parâmetro de 'saída' - dados recolhidos' -
-        this.props.dadosRecolhidos(this.state);
-        this.setState(this.novoAluno)
+    handlerSubmitForm = (evento) =>{
+        //impedir o formulário de autoenviar os dados para o servidor
+        //essa tarefa cabe ao componente App.js
+        evento.preventDefault();
+        
+        //prepração dos dados para serem enviados para a App.js
+        //podemos já enviar os dados prontos para serem adicionados à API
+        let dadosFormulario = {
+            Jogo: this.state.nomeDoJogo,
+            UpFotografia: this.state.FotodoJogo
+        };
+
+        //concretizar a exportação dos dados para a App.js
+        this.props.outDadosJogos(dadosFormulario);
     }
 
     render(){
-
-        // estamos a ler os dados que são recebidos pelo componente
-        // <=> this.props.dadosAlunos
-        const { dadosJogos } = this.props;
-
         return(
             //o 'return' só consegue devolver um objeto
-            <form>
-                Jogo: <input type="text" 
-                                   value={this.state.nomeDaFoto} 
-                                   onChange={this.handlerFotoChange}/> <br />
+            <form onSubmit={this.handlerSubmitForm} encType="multipart/form-data">
+                Jogo: <input type="text"
+                             value={this.state.nomeDoJogo}
+                             onChange={this.handlerJogoChange}/> <br />
                 Foto do Jogo: <input type="file" 
-                                     value={this.state.imagemFoto} 
-                                     onChange={this.handlerDataChange}/> <br />
-                Id do Jogo: <EscolheJogo listaJogos={dadosJogos} /><br />
-                            <input type="submit" value="Adicionar Jogo"/>
-              
+                                        
+                                     onChange={this.handlerFotoChange}/> <br />  
+                <input type="submit" value="Adicionar Jogo" className="btn btn-outline-primary" />           
             </form>
         )
     }
