@@ -31,8 +31,9 @@ async function getJogos() {
  */
 async function adicionaJogo(dadosNovoJogo){
   let formData = new FormData();
-  formData.append("Jogo", dadosNovoJogo.Jogo);
+  formData.append("nomeJogo", dadosNovoJogo.Jogo);
   formData.append("UpFotografia", dadosNovoJogo.UpFotografia);
+  formData.append("descricaoJogo", dadosNovoJogo.DescJogo);
 
   let resposta = await fetch("api/JogosAPI", {
     method: "POST",
@@ -166,6 +167,7 @@ class App extends React.Component {
         });
         console.error("Erro ao submeter os dados do novo Jogo; ", erro)
       }
+      window.location.reload();
     // //recuperar os jogos que estão representados na tabela 
     // const {jogos} = this.state
     // //alterar essa lista, retirando dela o jogo identificado pelo 'index'
@@ -202,7 +204,7 @@ class App extends React.Component {
       });
       console.error("Erro ao submeter os dados do novo Jogo; ", erro)
     }
-
+    window.location.reload();
   }
 
   render() {
