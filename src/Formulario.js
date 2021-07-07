@@ -79,8 +79,7 @@ class Formulario extends React.Component{
                 Jogo: <input type="text"
                              value={this.state.nomeDoJogo}
                              onChange={this.handlerJogoChange}/> <br />
-                Foto do Jogo: <input type="file" 
-                                        
+                Foto do Jogo: <input type="file"  
                                      onChange={this.handlerFotoChange}/> <br />  
                 <input type="submit" value="Adicionar Jogo" className="btn btn-outline-primary" />           
             </form>

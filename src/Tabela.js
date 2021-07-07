@@ -8,9 +8,11 @@ function CabecalhoTabela() {
     return (
         <thead>
             <tr>
+                <th>Id do Jogo</th>
                 <th>Nome do Jogo</th>
                 <th>Imagem do Jogo</th>
-                <th>Id do Jogo</th>
+                <th>Nota do Jogo</th>
+                <th>Descricao do Jogo</th>
                 <th>Apagar Jogo</th>
             </tr>
         </thead>
@@ -25,12 +27,14 @@ const CorpoTabela = (props) => {
     const rows = props.dadosDosJogos.map((row) => {
         return (
             <tr key={row.idJogo}>
+                <td>{row.idJogo}</td>
                 <td>{row.nomeJogo}</td>
                 <td><img src={'fotosjogos/' + row.imagemFoto}
                     alt={'foto do ' + row.nomeJogo}
                     height="150" />
                 </td>
-                <td>{row.idJogo}</td>
+                <td>{row.NotaJogo}</td>
+                <td>{row.DescricaoJogo}</td>
                 <td><button className="btn btn-outline-danger" onClick={()=>props.jogoaRemover(row)}>Apagar Jogo</button></td>
             </tr>
         )

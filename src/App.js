@@ -49,7 +49,11 @@ async function adicionaJogo(dadosNovoJogo){
   return await resposta.json();
 }
 
-
+/**
+ * invoca a api para apagar o jogo selecionado
+ * @param {*} dadosjogoremover 
+ * @returns 
+ */
 async function removeJogo(dadosjogoremover){
   let formData = new FormData();
   formData.append("IdJogo", dadosjogoremover.IdJogo);
