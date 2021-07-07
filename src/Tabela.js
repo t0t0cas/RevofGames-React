@@ -33,8 +33,8 @@ const CorpoTabela = (props) => {
                     alt={'foto do ' + row.nomeJogo}
                     height="150" />
                 </td>
-                <td>{row.NotaJogo}</td>
-                <td>{row.DescricaoJogo}</td>
+                <td>{row.notaJogo}</td>
+                <td>{row.descricaoJogo}</td>
                 <td><button className="btn btn-outline-danger" onClick={()=>props.jogoaRemover(row)}>Apagar Jogo</button></td>
             </tr>
         )

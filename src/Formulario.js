@@ -17,7 +17,9 @@ class Formulario extends React.Component{
         //variáveis para guardar os dados introduzidos pelo utilizador, no formulário
         this.state = {
             nomeDoJogo:"",
-            FotodoJogo:null
+            FotodoJogo:null,
+            notadoJogo:"",
+            descricaodoJogo:""
         } 
     }
 
@@ -26,6 +28,46 @@ class Formulario extends React.Component{
      * @param {*} evento - dados adicionados pelo utilizador 
      * 
      */
+    handlerJogoChange = (evento) =>{
+        //validar os valores introduzidos na TextBox (Impede que o utilizador insira números)
+        if(/\d/.test(evento.target.value)){
+            evento.target.setCustomValidity("Nome do Jogo Inválido");
+            return;
+        }else {
+            evento.target.setCustomValidity("");
+        }
+
+        //guardar os dados recolhidos
+        this.setState({
+            nomeDoJogo: evento.target.value
+        });
+    }
+
+    /**
+     * processar os dados fornecidos pelo utilizador sobre o nome do Jogo
+     * @param {*} evento - dados adicionados pelo utilizador 
+     * 
+     */
+     handlerJogoChange = (evento) =>{
+        //validar os valores introduzidos na TextBox (Impede que o utilizador insira números)
+        if(/\d/.test(evento.target.value)){
+            evento.target.setCustomValidity("Nome do Jogo Inválido");
+            return;
+        }else {
+            evento.target.setCustomValidity("");
+        }
+
+        //guardar os dados recolhidos
+        this.setState({
+            nomeDoJogo: evento.target.value
+        });
+    }
+
+    /**
+     * processar os dados fornecidos pelo utilizador sobre o nome do Jogo
+     * @param {*} evento - dados adicionados pelo utilizador  
+     *          
+    */
     handlerJogoChange = (evento) =>{
         //validar os valores introduzidos na TextBox (Impede que o utilizador insira números)
         if(/\d/.test(evento.target.value)){
@@ -81,6 +123,12 @@ class Formulario extends React.Component{
                              onChange={this.handlerJogoChange}/> <br />
                 Foto do Jogo: <input type="file"  
                                      onChange={this.handlerFotoChange}/> <br />  
+                Nota: <input type="text"
+                             value={this.state.nomeDoJogo}
+                             onChange={this.handlerJogoChange}/> <br />
+                Descricao: <input type="text"
+                             value={this.state.nomeDoJogo}
+                             onChange={this.handlerJogoChange}/> <br />
                 <input type="submit" value="Adicionar Jogo" className="btn btn-outline-primary" />           
             </form>
         )
