@@ -18,7 +18,8 @@ class Formulario extends React.Component{
         this.state = {
             nomeDoJogo: "",
             FotodoJogo:null,
-            DescJogo:""
+            DescJogo:"",
+            notaJogo:""
         } 
     }
 
@@ -58,7 +59,19 @@ class Formulario extends React.Component{
 
         //guardar os dados recolhidos
         this.setState({
-            nomeDoJogo: evento.target.value
+            DescJogo: evento.target.value
+        });
+    }
+
+    /**
+     * processar os dados fornecidos pelo utilizador sobre o nome do Jogo
+     * @param {*} evento - dados adicionados pelo utilizador  
+     *          
+    */
+     handlerNotaChange = (evento) =>{   
+        //guardar os dados recolhidos
+        this.setState({
+            notaJogo: evento.target.value
         });
     }
 
@@ -85,9 +98,10 @@ class Formulario extends React.Component{
         //prepração dos dados para serem enviados para a App.js
         //podemos já enviar os dados prontos para serem adicionados à API
         let dadosFormulario = {
-            Jogo: this.state.nomeDoJogo,
+            Nome: this.state.nomeDoJogo,
             UpFotografia: this.state.FotodoJogo,
-            DescJogo: this.state.descricaodoJogo
+            Descricao: this.state.DescJogo,
+            Nota: this.state.notaJogo
         };
 
         //concretizar a exportação dos dados para a App.js
@@ -102,9 +116,15 @@ class Formulario extends React.Component{
                              value={this.state.nomeDoJogo}
                              onChange={this.handlerJogoChange}/> <br />
                 Foto do Jogo: <input type="file"  
-                                     onChange={this.handlerFotoChange}/> <br />  
+                                     onChange={this.handlerFotoChange}/> <br />
+                Nota do Jogo: <input type="number"
+                                     min="0"
+                                     max="100"
+                                     placeholder="1 a 100"
+                                     value={this.state.notaJogo}
+                                     onChange={this.handlerNotaChange}/> <br />  
                 Descricao: <input type="text"
-                             value={this.state.nomeDoJogo}
+                             value={this.state.DescJogo}
                              onChange={this.handlerDescricaoChange}/> <br />
                 <input type="submit" value="Adicionar Jogo" className="btn btn-outline-primary" />           
             </form>

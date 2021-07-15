@@ -31,9 +31,10 @@ async function getJogos() {
  */
 async function adicionaJogo(dadosNovoJogo){
   let formData = new FormData();
-  formData.append("nomeJogo", dadosNovoJogo.Jogo);
+  formData.append("Nome", dadosNovoJogo.Nome);
   formData.append("UpFotografia", dadosNovoJogo.UpFotografia);
-  formData.append("descricaoJogo", dadosNovoJogo.DescJogo);
+  formData.append("Descricao", dadosNovoJogo.Descricao);
+  formData.append("Nota", dadosNovoJogo.Nota);
 
   let resposta = await fetch("api/JogosAPI", {
     method: "POST",
