@@ -68,7 +68,7 @@ class Formulario extends React.Component{
      * @param {*} evento - dados adicionados pelo utilizador   
      *          
     */
-     handlerNotaChange = (evento) =>{    
+     handlerNotaChange = (evento) =>{     
         //guardar os dados recolhidos
         this.setState({
             notaJogo: evento.target.value
