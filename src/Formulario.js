@@ -65,7 +65,7 @@ class Formulario extends React.Component{
 
     /**
      * processar os dados fornecidos pelo utilizador sobre a nota do Jogo
-     * @param {*} evento - dados adicionados pelo utilizador  
+     * @param {*} evento - dados adicionados pelo utilizador   
      *          
     */
      handlerNotaChange = (evento) =>{   
