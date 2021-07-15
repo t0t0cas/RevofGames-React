@@ -51,7 +51,7 @@ class Formulario extends React.Component{
      handlerDescricaoChange = (evento) =>{
         //validar os valores introduzidos na TextBox (Impede que o utilizador insira números)
         if(/\d/.test(evento.target.value)){
-            evento.target.setCustomValidity("Nome do Jogo Inválido");
+            evento.target.setCustomValidity("Descrição do Jogo Inválido");
             return;
         }else {
             evento.target.setCustomValidity("");
@@ -64,7 +64,7 @@ class Formulario extends React.Component{
     }
 
     /**
-     * processar os dados fornecidos pelo utilizador sobre o nome do Jogo
+     * processar os dados fornecidos pelo utilizador sobre a nota do Jogo
      * @param {*} evento - dados adicionados pelo utilizador  
      *          
     */
@@ -118,7 +118,7 @@ class Formulario extends React.Component{
                 Foto do Jogo: <input type="file"  
                                      onChange={this.handlerFotoChange}/> <br />
                 Nota do Jogo: <input type="number"
-                                     min="0"
+                                     min="1"
                                      max="100"
                                      placeholder="1 a 100"
                                      value={this.state.notaJogo}
