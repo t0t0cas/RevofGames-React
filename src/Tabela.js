@@ -7,7 +7,7 @@ import React from 'react'
 function CabecalhoTabela() {
     return (
         <thead>
-            <tr>
+            <tr style={{color: "white"}}>
                 <th>Id do Jogo</th>
                 <th>Nome do Jogo</th>
                 <th>Imagem do Jogo</th>
@@ -27,7 +27,7 @@ const CorpoTabela = (props) => {
     // os objetos definidos dentro do array 'dadosDosJogos'
     const rows = props.dadosDosJogos.map((row) => {
         return (
-            <tr key={row.idJogo}>
+            <tr style={{color: "white"}} key={row.idJogo}>
                 <td>{row.idJogo}</td>
                 <td>{row.nomeJogo}</td>
                 <td><img src={'fotosjogos/' + row.imagemFoto}
