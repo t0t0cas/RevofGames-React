@@ -13,6 +13,7 @@ function CabecalhoTabela() {
                 <th>Imagem do Jogo</th>
                 <th>Nota do Jogo</th>
                 <th>Descricao do Jogo</th>
+                <th>LojaFK do Jogo</th>
                 <th>Apagar Jogo</th>
             </tr>
         </thead>
@@ -35,6 +36,7 @@ const CorpoTabela = (props) => {
                 </td>
                 <td>{row.notaJogo}</td>
                 <td>{row.descricaoJogo}</td>
+                <td>{row.lojaFK}</td>
                 <td><button className="btn btn-outline-danger" onClick={()=>props.jogoaRemover(row)}>Apagar Jogo</button></td>
             </tr>
         )

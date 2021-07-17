@@ -19,7 +19,8 @@ class Formulario extends React.Component{
             nomeDoJogo: "",
             FotodoJogo:null,
             DescJogo:"",
-            notaJogo:""
+            notaJogo:"",
+            lojaJogo:""
         } 
     }
 
@@ -76,6 +77,18 @@ class Formulario extends React.Component{
     }
 
     /**
+     * processar os dados fornecidos pelo utilizador sobre a nota do Jogo
+     * @param {*} evento - dados adicionados pelo utilizador  
+     *          
+    */
+     handlerLojaChange = (evento) =>{   
+        //guardar os dados recolhidos
+        this.setState({
+            lojaJogo: evento.target.value
+        });
+    }
+
+    /**
      * processar os dados fornecidos pelo utilizador no upload da foto do jogo
      * @param {} evento - dados adicionados pelo utilizador
      */
@@ -101,7 +114,8 @@ class Formulario extends React.Component{
             Nome: this.state.nomeDoJogo,
             UpFotografia: this.state.FotodoJogo,
             Descricao: this.state.DescJogo,
-            Nota: this.state.notaJogo
+            Nota: this.state.notaJogo,
+            LojaFK: this.state.lojaJogo
         };
 
         //concretizar a exportação dos dados para a App.js
@@ -122,10 +136,15 @@ class Formulario extends React.Component{
                                      max="100"
                                      placeholder="1 a 100"
                                      value={this.state.notaJogo}
-                                     onChange={this.handlerNotaChange}/> <br />  
+                                     onChange={this.handlerNotaChange}/> <br /> 
                 Descricao: <input type="text"
                              value={this.state.DescJogo}
                              onChange={this.handlerDescricaoChange}/> <br />
+                Loja: <input type="number"
+                             min="1"
+                             max="1"
+                             value={this.state.lojaJogo}
+                             onChange={this.handlerLojaChange}/> <br />
                 <input type="submit" value="Adicionar Jogo" className="btn btn-outline-primary" />           
             </form>
         )
